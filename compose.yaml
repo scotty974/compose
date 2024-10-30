@@ -51,6 +51,8 @@ services:
     
 networks:
   backend:
+    driver: bridge
+    
 volumes:
   db_data:
   pgadmin_data:
