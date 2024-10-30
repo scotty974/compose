@@ -5,8 +5,7 @@ services:
     build:
       context: ./back
       dockerfile: ../docker/backend.dockerfile
-    env_file:
-      - ./docker/backend.env
+    env_file: ./docker/backend.env
     ports:
       - 3000:3000
     depends_on:
@@ -17,12 +16,7 @@ services:
   db:
     image: postgres
     restart: always
-    env_file:
-      - ./docker/postgres.env
-    environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=compose
+    env_file: ./docker/postgres.env
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
@@ -33,9 +27,6 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     env_file: ./docker/pgadmin.env
-    environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@example.com
-      - PGADMIN_DEFAULT_PASSWORD=admin_password
     ports:
       - 5050:80
     volumes:
@@ -50,8 +41,7 @@ services:
     build:
       context: ./frontend
       dockerfile: ../docker/frontend.dockerfile
-    env_file:
-      - ./docker/frontend.env
+    env_file: ./docker/frontend.env
     ports:
       - 8080:80
     depends_on:
