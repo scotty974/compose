@@ -67,21 +67,23 @@ function cancelEdit() {
 
 <template>
   <div class="container">
-    <h1>Liste des utilisateurs</h1>
-    <ul class="user-list">
-      <li v-for="user in users" :key="user.id" class="user-item">
-        <span v-if="editingUser && editingUser.id === user.id">
-          <input v-model="editedUsername" class="edit-input" />
-          <button @click="handleUpdateUser" class="update-button">✔️</button>
-          <button @click="cancelEdit" class="cancel-button">❌</button>
-        </span>
-        <span v-else>
-          {{ user.username }} 
-          <button @click="startEdit(user)" class="edit-button">✏️</button>
-          <button @click="deleteUsers(user.id)" class="delete-button">🗑</button>
-        </span>
-      </li>
-    </ul>
+    <div class="user-list-container">
+      <h1>Liste des utilisateurs</h1>
+      <ul class="user-list">
+        <li v-for="user in users" :key="user.id" class="user-item">
+          <span v-if="editingUser && editingUser.id === user.id">
+            <input v-model="editedUsername" class="edit-input" />
+            <button @click="handleUpdateUser" class="update-button">✔️</button>
+            <button @click="cancelEdit" class="cancel-button">❌</button>
+          </span>
+          <span v-else>
+            {{ user.username }} 
+            <button @click="startEdit(user)" class="edit-button">✏️</button>
+            <button @click="deleteUsers(user.id)" class="delete-button">🗑</button>
+          </span>
+        </li>
+      </ul>
+    </div>
 
     <div class="form-container">
       <h2>Inscris-toi</h2>
@@ -103,13 +105,19 @@ function cancelEdit() {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  display: flex;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-list-container {
+  flex: 1;
+  margin-right: 20px;
 }
 
 h1, h2 {
@@ -127,6 +135,12 @@ h1, h2 {
   align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ddd;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.user-item:hover {
+  background-color: #e9ecef;
+  transform: scale(1.02);
 }
 
 .user-item:last-child {
@@ -154,7 +168,7 @@ h1, h2 {
 }
 
 .form-container {
-  margin-top: 20px;
+  width: 300px; /* Fixe la largeur de la section d'inscription */
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
@@ -171,6 +185,12 @@ h1, h2 {
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  transition: border 0.3s;
+}
+
+.input-field:focus {
+  border-color: #007BFF;
+  outline: none;
 }
 
 .submit-button {
