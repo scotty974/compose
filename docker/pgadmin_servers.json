@@ -1,0 +1,13 @@
+{
+  "Servers": {
+    "1": {
+      "Name": "compose",
+      "Group": "Servers",
+      "Host": "db",
+      "Port": 5432,
+      "Username": "root",
+      "Password": "root",
+      "SSLMode": "prefer"
+    }
+  }
+}
